@@ -4,9 +4,9 @@
 | 1  | Virtualization                    | Multipass                                                  | completed       |  20/01/2025  |  22/01/2025    |
 | 2  | Virtualization                    | Virtualbox                                                 | completed       |              |                |
 | 3  | Virtualization                    | KVM                                                        | completed       |              |                |
-| 4  | Virtualization                    | LXC                                                        | completed       |              |                |
+| 4  | Virtualization                    | LXC                                                        | completed       |  20/01/2025  |  22/01/2025    |
 | 5  | Virtualization                    | Vagrant                                                    | completed       |              |                |
-| 6  | IaC                               | Ansible                                                    | completed       |              |                |
+| 6  | IaC                               | Ansible                                                    | completed       |  22/01/2025  | 24/01/2025     |
 | 7  | IaC                               | Terraform                                                  | completed       |  22/01/2025  | 24/01/2025     |
 | 8  | Linux                             | Shell Scripting/Bash                                       | completed       |              |                |
 | 9  | Linux services                    | Nginx                                                      | completed       |              |                |
