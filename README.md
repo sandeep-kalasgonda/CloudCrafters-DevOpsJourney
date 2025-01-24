@@ -1,16 +1,16 @@
 ```markdown
 | No | Category                          | Task Description                                           | Remark          | Started Time | Completed Time |
 |----|-----------------------------------|------------------------------------------------------------|-----------------|--------------|----------------|
-| 1  | Virtualization                    | Multipass                                                  |                 |              |                |
-| 2  | Virtualization                    | Virtualbox                                                 |                 |              |                |
-| 3  | Virtualization                    | KVM                                                        |                 |              |                |
-| 4  | Virtualization                    | LXC                                                        |                 |              |                |
-| 5  | Virtualization                    | Vagrant                                                    |                 |              |                |
-| 6  | IaC                               | Ansible                                                    |                 |              |                |
-| 7  | IaC                               | Terraform                                                  |                 |              |                |
-| 8  | Linux                             | Shell Scripting/Bash                                       |                 |              |                |
-| 9  | Linux services                    | Nginx                                                      |                 |              |                |
-| 10 | Linux services                    | Apache                                                     |                 |              |                |
+| 1  | Virtualization                    | Multipass                                                  | completed       |              |                |
+| 2  | Virtualization                    | Virtualbox                                                 | completed       |              |                |
+| 3  | Virtualization                    | KVM                                                        | completed       |              |                |
+| 4  | Virtualization                    | LXC                                                        | completed       |              |                |
+| 5  | Virtualization                    | Vagrant                                                    | completed       |              |                |
+| 6  | IaC                               | Ansible                                                    | completed       |              |                |
+| 7  | IaC                               | Terraform                                                  | completed       |              |                |
+| 8  | Linux                             | Shell Scripting/Bash                                       | completed       |              |                |
+| 9  | Linux services                    | Nginx                                                      | completed       |              |                |
+| 10 | Linux services                    | Apache                                                     | completed       |              |                |
 | 11 | Linux services                    | Virtual host configs                                       |                 |              |                |
 | 12 | Linux services                    | DNS/Bind                                                   |                 |              |                |
 | 13 | Networking                        | Routing table                                              |                 |              |                |
