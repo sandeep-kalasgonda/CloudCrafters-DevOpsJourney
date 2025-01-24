@@ -1,92 +1,186 @@
+# LXC Documentation for Installing and Setting Up on Ubuntu
 
-On such an Ubuntu system, installing LXC is as simple as:
+## Introduction
+Linux Containers (LXC) provide lightweight virtualization by enabling multiple isolated Linux systems (containers) to run on a single host using the same kernel. This guide walks you through the installation, setup, networking, and volume mounting for LXC on Ubuntu, with examples.
 
+---
+
+## Installing LXC on Ubuntu
+
+Follow these steps to install LXC on an Ubuntu system:
+
+### Step 1: Update the Systemcd D 
 ```bash
-sudo apt-get install lxc
+sudo apt update
+sudo apt upgrade -y
 ```
 
-Your system will then have all the LXC commands available, all its templates as well as the python3 binding should you want to script LXC.
+### Step 2: Install LXC
+```bash
+sudo apt install lxc lxc-utils lxc-templates -y
+```
 
-Use the following command to check whether the Linux kernel has the required configuration:
-
+### Step 3: Verify the Installation
+Check the installed version of LXC:
 ```bash
 lxc-checkconfig
 ```
+This command ensures your kernel supports all the necessary features for LXC.
 
-Create Privileged Containers
-Privileged containers are containers that are created by root and run as root.
+---
 
-Privileged containers are the easiest way to get started learning about and experimenting with LXC, but they may not be appropriate for production use. Depending on the host Linux distribution, privileged containers may be protected by some capability dropping, apparmor profiles, selinux context or seccomp policies but ultimately, the processes still run as root and so you should never give access to root inside a privileged container to an untrusted party. Even knowing that privileged containers are less secure, if you still must create privileged containers or they are specifically required for your use case, then creating them is quite simple. By default, LXC will create privileged containers.
+## Basic LXC Setup
 
-Note that the terminal prompts we use here may be different than you see on your computer. The terminal prompts we use here emphasize if we are currently in a host shell or container shell and which user we are.
-
-Create a privileged container with the following command. You can choose any container name that will be memorable for you. LXC's download template will help you select a container image available from https://images.linuxcontainers.org/
-
+### Step 1: Create a Container
+To create a container named `my-container`:
 ```bash
-root@host:~# lxc-create --name mycontainer --template download
+sudo lxc-create -n my-container -t ubuntu
+```
+Here, `-t ubuntu` specifies the template to use for the container's root filesystem.
+
+### Step 2: Start the Container
+```bash
+sudo lxc-start -n my-container -d
+```
+The `-d` flag runs the container in the background.
+
+### Step 3: Attach to the Container
+To attach to the container's shell:
+```bash
+sudo lxc-attach -n my-container
 ```
 
-If you know the container image you want to use, you can specify the options to be sent to the download template. For example,
-
+### Step 4: Stop the Container
+To stop the container:
 ```bash
-root@host:~# lxc-create --name mycontainer --template download -- --dist alpine --release 3.19 --arch amd64
+sudo lxc-stop -n my-container
 ```
 
-After creating the container, you can start it.
+---
 
+## Networking Configuration
+
+LXC supports several networking modes. By default, LXC containers use a bridged network setup. Below is an example of configuring a custom bridge:
+
+### Step 1: Create a Network Bridge
+1. Install the bridge utilities:
+   ```bash
+   sudo apt install bridge-utils -y
+   ```
+2. Edit the network configuration file to define the bridge. For example, modify `/etc/netplan/01-netcfg.yaml`:
+   ```yaml
+   network:
+     version: 2
+     renderer: networkd
+     ethernets:
+       enp0s3:
+         dhcp4: no
+     bridges:
+       br0:
+         interfaces: [enp0s3]
+         addresses:
+           - 192.168.1.100/24
+         gateway4: 192.168.1.1
+         nameservers:
+           addresses: [8.8.8.8, 8.8.4.4]
+   ```
+3. Apply the changes:
+   ```bash
+   sudo netplan apply
+   ```
+
+### Step 2: Configure LXC to Use the Bridge
+Edit the LXC container configuration file (e.g., `/var/lib/lxc/my-container/config`) and add:
 ```bash
-root@host:~# lxc-start --name mycontainer
+lxc.net.0.type = veth
+lxc.net.0.link = br0
+lxc.net.0.flags = up
+lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
 ```
 
-You can see status information about the container.
-
+Restart the container to apply the networking changes:
 ```bash
-root@host:~# lxc-info --name mycontainer
+sudo lxc-stop -n my-container
+sudo lxc-start -n my-container
 ```
 
-You can see status information about all containers.
+---
 
+## Volume Mounting
+
+To share directories between the host and a container, use volume mounting:
+
+### Step 1: Create a Directory on the Host
+Create a directory on the host system to share with the container:
 ```bash
-root@host:~# lxc-ls --fancy
+sudo mkdir -p /data/shared
+sudo chown 1000:1000 /data/shared
 ```
 
-Start a container shell.
-
+### Step 2: Configure the Container to Use the Directory
+Edit the LXC container configuration file (e.g., `/var/lib/lxc/my-container/config`) and add:
 ```bash
-root@host:~# lxc-attach --name mycontainer
+lxc.mount.entry = /data/shared data/shared none bind 0 0
 ```
 
-Inside the container is where we really get a feeling for what a system container is and how it is like a lightweight virtual machine in many ways. The changes we make inside the container persist. If we later stop the container and restart it, our changes will still be there.
-
-Explore the container.
-
+### Step 3: Verify the Mount Inside the Container
+After starting the container, verify the shared directory is mounted:
 ```bash
-root@mycontainer:~# cat /etc/os-release
+sudo lxc-attach -n my-container
+ls /data/shared
 ```
 
-Update the package index, upgrade installed packages, and install more packages you would like available.
+---
 
+## Example: Running an NGINX Server Inside an LXC Container
+
+### Step 1: Create and Start a Container
 ```bash
-root@mycontainer:~# apk update
-root@mycontainer:~# apk add --upgrade apk-tools
-root@mycontainer:~# apk upgrade --available
-root@mycontainer:~# apk add vim python3
+sudo lxc-create -n nginx-container -t ubuntu
+sudo lxc-start -n nginx-container -d
 ```
 
-Exit the container shell.
-
+### Step 2: Attach to the Container
 ```bash
-root@mycontainer:~# exit
+sudo lxc-attach -n nginx-container
 ```
 
-You can stop the container.
-
+### Step 3: Install NGINX Inside the Container
+Inside the container:
 ```bash
-root@host:~# lxc-stop --name mycontainer
+apt update
+apt install nginx -y
 ```
 
-If you will never need the container again, then you can permanently destroy it.
-
+### Step 4: Start NGINX Inside the Container
 ```bash
-root@host:~# lxc-destroy --name mycontainer
+systemctl start nginx
 ```
+
+### Step 5: Access the NGINX Server
+Find the container's IP address:
+```bash
+sudo lxc-info -n nginx-container | grep IP
+```
+Access the NGINX server by visiting `http://<container-ip>` in a browser.
+
+---
+
+## Troubleshooting
+
+### Check Container Logs
+If a container fails to start, check its logs:
+```bash
+sudo lxc-start -n my-container -l DEBUG -o my-container.log
+```
+
+### Verify Networking concept
+Ensure the bridge and container network interfaces are correctly set up:
+```bash
+ip a
+brctl show
+```
+
+---
+
+This guide provides a comprehensive setup for LXC on Ubuntu, including networking and volume mounting configurations. If you need further customization or have additional questions, feel free to ask!
