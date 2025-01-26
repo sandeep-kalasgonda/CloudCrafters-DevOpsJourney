@@ -83,7 +83,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any questions or suggestions, feel free to:
 
 - Open an issue on GitHub
-- Email us at [email@example.com](mailto:email@example.com)
+- Email us at [email@example.com](mailto:sandeep.kalasgonda@skill-mine.com)
 
 ---
 
