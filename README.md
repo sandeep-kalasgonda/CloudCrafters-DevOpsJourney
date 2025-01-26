@@ -28,7 +28,7 @@ Follow these steps to get started with Cloud Crafters:
    Clone the project repository to your local machine using the following command:
 
    ```sh
-   git clone https://github.com/yourusername/cloud-crafters.git
+   git clone https://github.com/sandeep-kalasgonda/CloudCrafters-DevOpsJourney.git
    ```
 
 2. **Explore the Content**  
