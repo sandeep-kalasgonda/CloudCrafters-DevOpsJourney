@@ -1,68 +1,90 @@
-```markdown
-| No | Category                          | Task Description                                           | Remark          | Started Time | Completed Time |
-|----|-----------------------------------|------------------------------------------------------------|-----------------|--------------|----------------|
-| 1  | Virtualization                    | Multipass                                                  | completed       |  20/01/2025  |  22/01/2025    |
-| 2  | Virtualization                    | Virtualbox                                                 | completed       |              |                |
-| 3  | Virtualization                    | KVM                                                        | completed       |              |                |
-| 4  | Virtualization                    | LXC                                                        | completed       |  20/01/2025  |  22/01/2025    |
-| 5  | Virtualization                    | Vagrant                                                    | completed       |              |                |
-| 6  | IaC                               | Ansible                                                    | completed       |  22/01/2025  | 24/01/2025     |
-| 7  | IaC                               | Terraform                                                  | completed       |  22/01/2025  | 24/01/2025     |
-| 8  | Linux                             | Shell Scripting/Bash                                       | completed       |              |                |
-| 9  | Linux services                    | Nginx                                                      | completed       |              |                |
-| 10 | Linux services                    | Apache                                                     | completed       |              |                |
-| 11 | Linux services                    | Virtual host configs                                       |                 |              |                |
-| 12 | Linux services                    | DNS/Bind                                                   |                 |              |                |
-| 13 | Networking                        | Routing table                                              |                 |              |                |
-| 14 | Networking                        | Custom routes                                              |                 |              |                |
-| 15 | Networking                        | OpenVPN                                                    |                 |              |                |
-| 16 | Networking                        | Subnetting                                                 |                 |              |                |
-| 17 | Networking                        | Proxy/reverse Proxy                                        |                 |              |                |
-| 18 | Networking                        | Firewall                                                   |                 |              |                |
-| 19 | Version Control                   | GIT                                                        |                 |              |                |
-| 20 | CI/CD                             | GitLab CICD                                                |                 |              |                |
-| 21 | CI/CD                             | Jenkins                                                    |                 |              |                |
-| 22 | Containerization                  | Docker                                                     |                 |              |                |
-| 23 | Containerization                  | Docker compose                                             |                 |              |                |
-| 24 | Containerization                  | Docker swarm                                               |                 |              |                |
-| 25 | Containerization                  | Kubernetes                                                 |                 |              |                |
-| 26 | Cloud services                    | Services on AWS, Azure, GCP                                |                 |              |                |
-| 27 | Compute Services and Virtual Machines | EC2 Instance types and Sizing                          |                 |              |                |
-| 28 | Compute Services and Virtual Machines | Elastic Beanstalk and Lambda (Serverless)              |                 |              |                |
-| 29 | Compute Services and Virtual Machines | Azure Virtual Machines and App Services                 |                 |              |                |
-| 30 | Compute Services and Virtual Machines | Azure Functions (Serverless)                            |                 |              |                |
-| 31 | Compute Services and Virtual Machines | Google Compute Engine and App Engine                    |                 |              |                |
-| 32 | Compute Services and Virtual Machines | Google Cloud Functions                                   |                 |              |                |
-| 33 | Compute Services and Virtual Machines | Deploying a Web App using EC2, Virtual Machines, App Services |                 |              |                |
-| 34 | Compute Services and Virtual Machines | Exploring serverless functions (AWS Lambda, Azure Functions, GCP Functions) |                 |              |                |
-| 35 | Compute Services and Virtual Machines | Exploring serverless functions (AWS Lambda, Azure Functions, GCP Functions) |                 |              |                |
-| 36 | Networking and security           | Security Groups                                            |                 |              |                |
-| 37 | Networking and security           | VPCs, Subnets                                              |                 |              |                |
-| 38 | Networking and security           | Load Balancers                                             |                 |              |                |
-| 39 | Networking and security           | Identity Management                                        |                 |              |                |
-| 40 | Storage & Database                | Block Storage                                              |                 |              |                |
-| 41 | Storage & Database                | Object Storage                                             |                 |              |                |
-| 42 | Storage & Database                | RDS, Cosmos DB, BigQuery                                   |                 |              |                |
-| 43 | Automation and Configuration Management | CloudFormation                                         |                 |              |                |
-| 44 | Automation and Configuration Management | Azure Resource Manager (ARM) Templates                  |                 |              |                |
-| 45 | Automation and Configuration Management | Google Cloud Deployment Manager                         |                 |              |                |
-| 46 | Monitoring, Logging, and Alerts   | CloudWatch, CloudTrail, and CloudFormation                 |                 |              |                |
-| 47 | Monitoring, Logging, and Alerts   | Azure Monitor and Log Analytics                            |                 |              |                |
-| 48 | Monitoring, Logging, and Alerts   | Google Stackdriver                                         |                 |              |                |
-| 49 | DevOps and CI/CD                  | CodePipeline, CodeDeploy, and CodeBuild                    |                 |              |                |
-| 50 | DevOps and CI/CD                  | Azure DevOps Services and Pipelines                        |                 |              |                |
-| 51 | DevOps and CI/CD                  | Google Cloud Build and Cloud Functions                     |                 |              |                |
-| 52 | Cloud Security and Compliance     | AWS Shield, WAF                                            |                 |              |                |
-| 53 | Cloud Security and Compliance     | AWS-KMS                                                    |                 |              |                |
-| 54 | Cloud Security and Compliance     | Azure Security Center and Key Vault                        |                 |              |                |
-| 55 | Cloud Security and Compliance     | Azure Firewall                                             |                 |              |                |
-| 56 | Cloud Security and Compliance     | Google Cloud Identity, Key Management, and Cloud Armor     |                 |              |                |
-| 57 | Cloud Cost Management and Optimization | AWS Pricing Calculator, Cost Explorer                  |                 |              |                |
-| 58 | Cloud Cost Management and Optimization | Azure Pricing Calculator and Cost Management            |                 |              |                |
-| 59 | Cloud Cost Management and Optimization | Google Cloud Pricing Calculator                          |                 |              |                |
-| 60 | Multi-Cloud and Hybrid Cloud Solutions | Why multi-cloud? Benefits and challenges                |                 |              |                |
-| 61 | Multi-Cloud and Hybrid Cloud Solutions | Connecting on-premise data centers to AWS, Azure, and GCP |                 |              |                |
-| 62 | Multi-Cloud and Hybrid Cloud Solutions | VPN, Direct Connect, ExpressRoute                        |                 |              |                |
-| 63 | Multi-Cloud and Hybrid Cloud Solutions | Configuring hybrid cloud setups between multiple platforms |                 |              |                |
-| 64 | Multi-Cloud and Hybrid Cloud Solutions | Exploring multi-cloud management tools                   |                 |              |                |
-```
+# Cloud Crafters
+
+Welcome to **Cloud Crafters**, an open-source project dedicated to providing comprehensive resources and tutorials for mastering cloud technologies. Our goal is to help individuals and organizations harness the power of cloud computing through practical, hands-on learning.
+
+---
+
+## About the Project
+
+Cloud Crafters is designed to cover a wide range of topics related to cloud computing, including:
+
+- Virtualization
+- Infrastructure as Code (IaC)
+- Containerization
+- Cloud services
+- Networking
+- Security
+- And much more
+
+Whether you are a beginner or an experienced professional, our project offers valuable insights and practical knowledge to enhance your cloud computing skills.
+
+---
+
+## Getting Started
+
+Follow these steps to get started with Cloud Crafters:
+
+1. **Clone the Repository**  
+   Clone the project repository to your local machine using the following command:
+
+   ```sh
+   git clone https://github.com/sandeep-kalasgonda/CloudCrafters-DevOpsJourney.git
+   ```
+
+2. **Explore the Content**  
+   Navigate through the various directories and files to explore the content. Each topic is organized into separate sections for easy access.
+
+3. **Contribute**  
+   We welcome contributions from the community! If you have expertise in any of the covered topics or want to add new content, feel free to submit a pull request.
+
+---
+
+## Contributing
+
+We encourage community contributions to improve and expand the content of Cloud Crafters. Here's how you can contribute:
+
+1. **Fork the Repository**  
+   Fork the project repository to your GitHub account.
+
+2. **Create a Branch**  
+   Create a new branch for your changes:
+
+   ```sh
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make Changes**  
+   Make your changes and commit them with a descriptive message:
+
+   ```sh
+   git commit -m "Add feature description"
+   ```
+
+4. **Push Changes**  
+   Push your changes to your forked repository:
+
+   ```sh
+   git push origin feature/your-feature-name
+   ```
+
+5. **Submit a Pull Request**  
+   Open a pull request to the main repository with a description of your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+## Contact
+
+For any questions or suggestions, feel free to:
+
+- Open an issue on GitHub
+- Email us at [sandeeprajendra00@gmail.com](mailto:sandeeprajendra00@gmail.com)
+
+---
+
+Thank you for being a part of Cloud Crafters!
