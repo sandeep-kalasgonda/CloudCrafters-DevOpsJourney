@@ -190,7 +190,7 @@ Vagrant allows you to share folders between the host and guest machine. By defau
 
 ---
 
-## Uninstalling Vagrant
+## Uninstalling Vagrant 
 
 To remove Vagrant, run:
 
