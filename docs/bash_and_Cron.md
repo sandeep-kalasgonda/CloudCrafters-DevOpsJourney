@@ -1,4 +1,4 @@
-# Introduction to Shell/Bash Scripting
+# Introduction to Shell/Bash Scripting and Setup and user manual
 
 Shell scripting allows you to automate tasks and interact with the operating system through command-line instructions. Bash (Bourne Again Shell) is one of the most popular shell interpreters used on Linux and Unix systems.
 
