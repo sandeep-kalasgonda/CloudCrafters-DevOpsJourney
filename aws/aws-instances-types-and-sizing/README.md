@@ -94,11 +94,11 @@ Pricing for EC2 instances depends on several factors:
 
 #### **Key Factors to Consider:**
 1. **Workload Type:**  
-   - General-purpose apps? Go with `T` or `M` series.
-   - CPU-intensive tasks? Opt for `C` series.
-   - Data-heavy workloads? Choose `R` or `X` series.
-   - High storage needs? Go for `I` or `D` series.
-   - Machine learning or AI tasks? Choose `P` or `G` series.
+   - General-purpose apps-Go with `T` or `M` series.
+   - CPU-intensive tasks-Opt for `C` series.
+   - Data-heavy workloads-Choose `R` or `X` series.
+   - High storage needs-Go for `I` or `D` series.
+   - Machine learning or AI tasks-Choose `P` or `G` series.
 
 2. **Performance Requirements:**  
    - Does your workload require burstable or sustained high performance? Choose accordingly (e.g., `t3.micro` vs. `c5n.large`).
