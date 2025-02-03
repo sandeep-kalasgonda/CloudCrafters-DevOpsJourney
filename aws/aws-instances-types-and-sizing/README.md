@@ -1,4 +1,3 @@
-Here’s a comprehensive guide on **EC2 Instance Types and Sizing**, with **pricing**, **real-life examples**, and instructions on how to **choose** the right instance for your workload. Additionally, we’ll go over **monitoring with CloudWatch** and creating **run notes** for tracking purposes.
 
 ---
 
