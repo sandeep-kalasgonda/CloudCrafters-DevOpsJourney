@@ -324,6 +324,10 @@ ip a
 ```
 - By running this command it will show the virtual interface that just now created by the VPN connection
 
+### To kill the connection:
+```bash
+sudo kill openvpn
+```
 
 
 
