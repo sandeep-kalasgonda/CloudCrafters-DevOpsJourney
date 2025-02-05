@@ -310,11 +310,11 @@ sudo systemctl enable openvpn@client
 
 ### Create the VPN Connection:
 ```bash
-sudo openvpn --config /etc/openvpn/client/client.conf   
+sudo openvpn --config /etc/openvpn/client/client.ovpn   
 ```
 - To run in a detached mode
 ```bash
-sudo openvpn --config /etc/openvpn/client/client.conf --daemon
+sudo openvpn --config /etc/openvpn/client/client.ovpn --daemon
 
 ```
 
