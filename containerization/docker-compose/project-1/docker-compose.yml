@@ -3,7 +3,7 @@
 
 Save the following content as `docker-compose.yml`:
 
-```yaml
+
 version: '3.9'
 
 services:
