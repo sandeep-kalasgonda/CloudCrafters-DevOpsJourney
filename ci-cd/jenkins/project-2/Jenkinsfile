@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    environment {
+        MASTER_IP = "10.67.216.254"
+        SLAVE_IP = "10.67.216.105"
+        SSH_USER = "ubuntu"
+    }
+
+    stages {
+        stage('Checkout Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Enigmaacs/My_nginx.git'
+            }
+        }
+
+        stage('Install Nginx on Slave') {
+            steps {
+                script {
+                    // Use the SSH private key for authentication
+                    withCredentials([sshUserPrivateKey(credentialsId: 'id_rsa', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                        sh """
+                            chmod 600 $SSH_PRIVATE_KEY
+                            ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SSH_USER@$SLAVE_IP 'sudo apt update && sudo apt install -y nginx'
+                            ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SSH_USER@$SLAVE_IP 'sudo systemctl enable nginx && sudo systemctl start nginx'
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Deploy Index.html') {
+            steps {
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'id_rsa', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                        sh """
+                            scp -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no index.html $SSH_USER@$SLAVE_IP:/tmp/
+                            ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SSH_USER@$SLAVE_IP 'sudo mv /tmp/index.html /var/www/html/'
+                            ssh -i $SSH_PRIVATE_KEY -o StrictHostKeyChecking=no $SSH_USER@$SLAVE_IP 'sudo systemctl restart nginx'
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    sh "curl -I http://$SLAVE_IP"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs() // Clean up the workspace after execution (optional)
+        }
+    }
+}	
+  
