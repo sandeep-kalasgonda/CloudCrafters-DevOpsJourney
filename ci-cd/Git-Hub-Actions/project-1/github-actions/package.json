@@ -1,0 +1,25 @@
+{
+  "name": "my-node-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaishnavivkulkarni/git.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaishnavivkulkarni/git/issues"
+  },
+  "homepage": "https://github.com/vaishnavivkulkarni/git#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
