@@ -4,7 +4,7 @@ GitHub Actions is a powerful automation tool that enables **Continuous Integrati
 
 ---
 
-## 🚀 Features of GitHub Actions
+## Features of GitHub Actions
 - Automates build, test, and deployment workflows.
 - Supports event-driven execution (e.g., `push`, `pull_request`).
 - Offers a marketplace with pre-built actions.
@@ -12,9 +12,9 @@ GitHub Actions is a powerful automation tool that enables **Continuous Integrati
 
 ---
 
-## 🛠️ Setting Up GitHub Actions
+##  Setting Up GitHub Actions
 
-### **1️⃣ Create a Workflow File**
+### **1️ Create a Workflow File**
 Workflows in GitHub Actions are defined in **YAML** files inside `.github/workflows/`.
 
 Example: **Basic CI Pipeline**
@@ -48,7 +48,7 @@ jobs:
 
 ---
 
-## 📂 File Structure
+## File Structure
 ```
 /my-project
 │── .github/
@@ -61,15 +61,15 @@ jobs:
 
 ---
 
-## 🔍 Viewing Workflow Output
+##  Viewing Workflow Output
 
-### **1️⃣ GitHub UI**
+### **1️ GitHub UI**
 1. Go to your **GitHub repository**.
 2. Click on the **"Actions"** tab.
 3. Select the **workflow run** you want to inspect.
 4. Click on individual steps to **view logs**.
 
-### **2️⃣ GitHub CLI**
+### **2️ GitHub CLI**
 Run the following commands:
 ```sh
 gh run list                 # List recent workflow runs
@@ -78,7 +78,7 @@ gh run view <RUN_ID> --log  # View logs of a specific run
 
 ---
 
-## ⚙️ Debugging Tips
+##  Debugging Tips
 - Add debugging messages in the workflow:
   ```yaml
   - run: echo "Debugging step..."
@@ -90,7 +90,7 @@ gh run view <RUN_ID> --log  # View logs of a specific run
 
 ---
 
-## 📦 Using Secrets and Environment Variables
+##  Using Secrets and Environment Variables
 To securely store API keys and credentials, use **GitHub Secrets**:
 1. Go to your repository **Settings** → **Secrets and Variables** → **Actions**.
 2. Click **New repository secret**.
@@ -101,7 +101,7 @@ To securely store API keys and credentials, use **GitHub Secrets**:
 
 ---
 
-## 📢 Conclusion
+##  Conclusion
 GitHub Actions simplifies CI/CD automation, making it easier to test, build, and deploy projects. It integrates seamlessly with GitHub repositories and supports custom workflows for different use cases.
 
 For more details, check out the **[GitHub Actions Documentation](https://docs.github.com/en/actions)**.
