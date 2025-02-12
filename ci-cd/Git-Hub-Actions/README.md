@@ -108,5 +108,5 @@ For more details, check out the **[GitHub Actions Documentation](https://docs.gi
 
 ---
 
-💡 **Need help?** Feel free to create an issue or contribute to this repository! 🚀
+💡 ***Need help?** Feel free to create an issue or contribute to this repository! 🚀
 
