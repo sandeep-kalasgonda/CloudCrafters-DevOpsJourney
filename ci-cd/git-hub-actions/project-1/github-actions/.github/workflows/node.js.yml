@@ -1,0 +1,81 @@
+name: Node.js CI & Docker Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: [self-hosted, git-test]
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run build
+      run: npm run build --if-present
+
+    - name: Run tests
+      run: npm test
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build -t vaishnavi681/my-node-app:latest .
+
+    - name: Push Docker image to Docker Hub
+      run: |
+        docker push vaishnavi681/my-node-app:latest
+
+    - name: SSH into Azure VM and deploy the application
+      run: |
+        echo "Deploying to Azure VM..."
+
+        # Ensure the SSH key has the correct permissions
+        chmod 600 ~/.ssh/id_rsa
+        
+        # Add the Azure VM's IP to known hosts to avoid host key verification issues
+        ssh-keyscan -H ${{ secrets.AZURE_VM_PUBLIC_IP }} >> ~/.ssh/known_hosts
+
+        # SSH into Azure VM and deploy the Docker container
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa azureuser@${{ secrets.AZURE_VM_PUBLIC_IP }} << 'EOF'
+          
+          # Pull the latest Docker image
+          docker pull vaishnavi681/my-node-app:latest
+
+          # Remove any running container using port 3000
+          CONTAINER_ON_PORT=$(docker ps -q --filter "publish=3000")
+          if [ ! -z "$CONTAINER_ON_PORT" ]; then
+            echo "Stopping and removing container using port 3000..."
+            docker stop "$CONTAINER_ON_PORT"
+            docker rm "$CONTAINER_ON_PORT"
+          fi
+
+          # Run the Docker container on Azure VM with a unique name
+          UNIQUE_CONTAINER_NAME="my-node-app-$(date +%s)"
+          docker run -d -p 3000:3000 --name $UNIQUE_CONTAINER_NAME vaishnavi681/my-node-app:latest
+
+        EOF
