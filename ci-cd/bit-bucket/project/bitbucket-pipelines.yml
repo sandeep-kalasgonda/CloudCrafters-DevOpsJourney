@@ -1,0 +1,33 @@
+image: maven:3.8.4-openjdk-17
+
+pipelines:
+  default:
+    - step:
+        name: Trivy Security Scan
+        services:
+          - docker
+        script:
+          - apt-get update && apt-get install -y curl
+          
+          # Install Trivy
+          - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+          - trivy --version
+          
+          # Scan source code for vulnerabilities
+          - echo "Scanning source code..."
+          - trivy fs --scanners vuln,secret,config .
+          
+          # Scan dependencies in the Maven project
+          - echo "Scanning dependencies..."
+          - mvn clean package
+          - trivy fs target/*.jar
+
+          # Fail the pipeline if HIGH or CRITICAL vulnerabilities are found
+          - trivy fs --exit-code 1 --severity HIGH,CRITICAL .
+    
+    - step:
+        name: Build and Test
+        caches:
+          - maven
+        script:
+          - mvn clean install  
