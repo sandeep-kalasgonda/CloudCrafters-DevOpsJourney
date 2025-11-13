@@ -85,6 +85,23 @@ Your device may show something like `10.x.x.x` or `192.168.x.x` — that’s a *
 
 ---
 
+### 🧾 IP Address Classes (A–E)
+
+| Class | Starting Address | Ending Address | First Octet Range | Default Subnet Mask | Purpose / Usage |
+|--------|------------------|----------------|-------------------|---------------------|-----------------|
+| **A** | 0.0.0.0 | 127.255.255.255 | 0 – 127 | 255.0.0.0 (/8) | Very large networks (ISPs, major organizations) |
+| **B** | 128.0.0.0 | 191.255.255.255 | 128 – 191 | 255.255.0.0 (/16) | Medium-sized networks |
+| **C** | 192.0.0.0 | 223.255.255.255 | 192 – 223 | 255.255.255.0 (/24) | Small networks (home, offices) |
+| **D** | 224.0.0.0 | 239.255.255.255 | 224 – 239 | N/A | Multicasting (one-to-many communication) |
+| **E** | 240.0.0.0 | 255.255.255.255 | 240 – 255 | N/A | Experimental / Research use |
+
+💡 **Notes:**
+- `127.x.x.x` (part of Class A) is reserved for **loopback** (localhost).
+- Class D and E are **not used for standard host addressing**.
+- Modern networks use **CIDR (Classless Inter-Domain Routing)** instead of strict class boundaries.
+
+---
+
 ## 💻 5. The Loopback Address (127.0.0.1)
 
 The **loopback IP address** (`127.0.0.1`) is a **special address** used to test your own network stack.
